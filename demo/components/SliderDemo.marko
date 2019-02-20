@@ -1,0 +1,37 @@
+static const colors = ['red','green','blue','orange','purple','silver','aqua']
+class {
+    onCreate() {
+        this.state = {
+            current: 0,
+            num : 7,
+        }
+    }
+    sliderChange(slider) {
+        this.state.current = slider.currentSlide
+    }
+    increment() {
+        this.state.num++
+    }
+    onMount() {
+        window.demo = this
+        window.slider = this.getComponent("slider")
+    }
+}
+<div>
+    <button on-click("increment")>+</>
+    <div>Slide ${state.current} of ${state.num}</div>
+    <Slider key='slider' loop perPage=3 on-change('sliderChange') auto=2000>
+        <for(i from 1 to state.num)>
+            <@slide><div style={
+                'height': '100px;',
+                'background':colors[(i-1) % colors.length]}>${i} <AutoCounter increment=i/></></>
+        </for>
+    </>
+    <Slider key='slider' loop perPage=3 auto=2000 rtl>
+        <for(i from 1 to state.num)>
+            <@slide><div style={
+                'height': '100px;',
+                'background':colors[(i-1) % colors.length]}>${i} <AutoCounter increment=i/></></>
+        </for>
+    </>
+</div>

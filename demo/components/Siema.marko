@@ -1,0 +1,36 @@
+import { Siema } from "./SiemaCode.js"
+class {
+
+    onCreate() {
+        this.state = {
+            current: 0,
+            num: 0,
+        }
+    }
+    onMount() {
+        let comp = this
+        let siema = new Siema({
+            loop:true,
+            perPage:2,
+            selector:this.getEl('siema'),
+            onChange:function() {
+                comp.state.current = siema.currentSlide + 1
+                comp.state.num = siema.innerElements.length
+            },
+            onInit:function() {
+                setTimeout(()=>{
+                    comp.state.current = siema.currentSlide + 1
+                    comp.state.num = siema.innerElements.length
+                })
+            },
+        })
+    }
+}
+<div>
+Slide ${state.current} of ${state.num}
+</div>
+<div key='siema' no-update>
+    <div style='background: green;'>one</>
+    <div style='background: orange;'>two</>
+    <div style='background: blue;'>three</>
+</div>

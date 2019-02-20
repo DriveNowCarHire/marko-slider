@@ -1,0 +1,15 @@
+class {
+    onCreate(input) {
+        this.state = {
+            num : input.num || 0,
+            increment : input.increment || 1,
+        }
+    }
+
+    onMount() {
+        setInterval(()=>{
+            this.state.num += this.state.increment
+        }, 500)
+    }
+}
+<div>${state.num}</div>

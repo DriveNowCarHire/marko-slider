@@ -1,0 +1,53 @@
+import { Slider } from "./SliderClass.js"
+class {
+    onCreate(input) {
+        this.input = input
+        this.slider = new Slider(this)
+    }
+
+    onMount() {
+        this.slider.onMount()
+    }
+    onRender() {
+        this.slider.onRender()
+    }
+    onUpdate() {
+        this.slider.onUpdate()
+    }
+
+    prev(num, callback) {
+        this.slider.prev(num, callback)
+    }
+    next(num, callback) {
+        this.slider.next(num, callback)
+    }
+
+    get numSlides() {
+        return this.slider.api.numSlides
+    }
+
+    get currentSlide() {
+        return this.slider.api.currentSlide
+    }
+
+    onDestroy() {
+        this.slider.onDestroy()
+    }
+
+}
+$ const slider = component.slider
+<div style={'overflow':'hidden', 'direction': slider.config.rtl ? 'rtl':'ltr', cursor : slider.config.draggable && '-webkit-grab'}>
+    <div key="sliderFrame" style={
+        visibility :'hidden',
+    }>
+        <for(item in slider.itemsToRender)>
+            <div style={
+                cssFloat : slider.config.rtl ? 'right' : 'left',
+                float : slider.config.rtl ? 'right' : 'left',
+                width : `${slider.config.loop ? 100 / (slider.numSlides + (slider.perPage * 2)) : 100 / (slider.numSlides)}%`,
+            }>
+                <${item.slide} key=item.key/>
+            </div>
+        </for>
+    </div>
+</div>
